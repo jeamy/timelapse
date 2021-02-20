@@ -23,10 +23,6 @@ FONT_FILENAME = "/usr/share/fonts/truetype/ubuntu/UbuntuMono-B.ttf"
 # Format of timestamp on each frame
 TIMESTAMP_FORMAT = "%Y-%m-%d %H:%M:%S"
 
-# Command to batch convert mjpeg to mp4 files:
-#  for f in *.mjpeg; do echo $f ; avconv -r 30000/1001 -i "$f" "${f%mjpeg}mp4" 2>/dev/null ; done
-
-
 class Camera:
     def __init__(self, name, url, filename):
         self.name = name
@@ -74,9 +70,9 @@ if __name__ == "__main__":
     cameras.append(
         Camera("D51", "rtsp://admin:12345@192.168.8.51:554/live/main", "D51.mjpeg"))
     cameras.append(Camera(
-        "D52", "rtsp://admin:123456@192.168.8.52:554/h264Preview_01_main", "D52.mjpeg"))
+        "D52", "rtsp://admin:12345@192.168.8.52:554/h264Preview_01_main", "D52.mjpeg"))
     cameras.append(
-        Camera("D53", "rtsp://prosmart:asgard69@192.168.8.53/stream=0", "D53.mjpeg"))
+        Camera("D53", "rtsp://prosmart:12345@192.168.8.53/stream=0", "D53.mjpeg"))
 
     print("Capturing images from {0} cameras every {1} seconds...".format(
         len(cameras), LAPSE_TIME))
