@@ -39,8 +39,9 @@ class Camera:
     def CaptureImage(self):
         ret, frame = self.video.read()
         print("Got image from {0} camera".format(self.name))
-        imageRGB = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-        return Image.fromarray(imageRGB)
+        # imageRGB = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+        # return Image.fromarray(imageRGB)
+        return frame
 
     # def TimestampImage(self, image):
         # draw_buffer = ImageDraw.Draw(image)
@@ -51,7 +52,7 @@ class Camera:
         # with open(os.path.join(self.outputpath, self.stamptext), "a+b") as video_file:
         #    image.save(video_file, "JPEG")
         #    video_file.flush()
-        print(os.path.join(self.outputpath, self.stamptext + '.jpeg'))
+        # print(os.path.join(self.outputpath, self.stamptext + '.jpeg'))
         cv2.imwrite(os.path.join(self.outputpath, self.stamptext + '.jpeg'),
                     image, [cv2.IMWRITE_JPEG_QUALITY, 70])
 
