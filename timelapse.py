@@ -41,7 +41,7 @@ class Camera:
         print("Got image from {0} camera".format(self.name))
         # imageRGB = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
         # return Image.fromarray(imageRGB)
-        return frame
+        return ret, frame
 
     # def TimestampImage(self, image):
         # draw_buffer = ImageDraw.Draw(image)
@@ -57,17 +57,21 @@ class Camera:
                     image, [cv2.IMWRITE_JPEG_QUALITY, 70])
 
     def Update(self):
-        image = self.CaptureImage()
+        ret, image = self.CaptureImage()
 
         timestamp = datetime.datetime.now()
         self.stamptext = "{0} - {1}".format(
             timestamp.strftime(TIMESTAMP_FORMAT), self.name)
         # self.TimestampImage(image)
 
-        self.SaveImage(image)
-        print("Captured image from {0} camera to {1}".format(
-            self.name, self.filename))
-
+        if ret:
+            self.SaveImage(image)
+            print("Captured image {0}".format(self.stamptext + ".jpeg"))
+        else:
+            print("Captured for image {0} failed!".format(
+                self.stamptext + ".jpeg"))
+            
+            
 
 if __name__ == "__main__":
     cameras = []
