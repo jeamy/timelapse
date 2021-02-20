@@ -51,7 +51,8 @@ class Camera:
         # with open(os.path.join(self.outputpath, self.stamptext), "a+b") as video_file:
         #    image.save(video_file, "JPEG")
         #    video_file.flush()
-        cv2.imwrite(os.path.join(self.outputpath, self.stamptext + 'jpeg'),
+        print(os.path.join(self.outputpath, self.stamptext + '.jpeg'))
+        cv2.imwrite(os.path.join(self.outputpath, self.stamptext + '.jpeg'),
                     image, [cv2.IMWRITE_JPEG_QUALITY, 90])
 
     def Update(self):
