@@ -1,2 +1,2 @@
 # timelapse
-timelapse images from webcams with opencv
+python timelapse images from webcams with opencv
