@@ -42,7 +42,7 @@ class Camera:
         imageRGB = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
         return Image.fromarray(imageRGB)
 
-    def TimestampImage(self, image):
+    # def TimestampImage(self, image):
         # draw_buffer = ImageDraw.Draw(image)
         # font = ImageFont.truetype(FONT_FILENAME, 32)
         # draw_buffer.text((5, 5), self.stamptext, font=font)
