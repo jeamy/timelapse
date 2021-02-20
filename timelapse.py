@@ -43,12 +43,9 @@ class Camera:
         return Image.fromarray(imageRGB)
 
     def TimestampImage(self, image):
-        draw_buffer = ImageDraw.Draw(image)
-        font = ImageFont.truetype(FONT_FILENAME, 32)
-        timestamp = datetime.datetime.now()
-        self.stamptext = "{0} - {1}".format(
-            timestamp.strftime(TIMESTAMP_FORMAT), self.name)
-        draw_buffer.text((5, 5), self.stamptext, font=font)
+        # draw_buffer = ImageDraw.Draw(image)
+        # font = ImageFont.truetype(FONT_FILENAME, 32)
+        # draw_buffer.text((5, 5), self.stamptext, font=font)
 
     def SaveImage(self, image):
         with open(os.path.join(self.outputpath, self.stamptext), "a+b") as video_file:
@@ -57,7 +54,12 @@ class Camera:
 
     def Update(self):
         image = self.CaptureImage()
+
+        timestamp = datetime.datetime.now()
+        self.stamptext = "{0} - {1}".format(
+            timestamp.strftime(TIMESTAMP_FORMAT), self.name)
         # self.TimestampImage(image)
+
         self.SaveImage(image)
         print("Captured image from {0} camera to {1}".format(
             self.name, self.filename))
