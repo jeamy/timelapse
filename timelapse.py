@@ -53,7 +53,7 @@ class Camera:
         #    video_file.flush()
         print(os.path.join(self.outputpath, self.stamptext + '.jpeg'))
         cv2.imwrite(os.path.join(self.outputpath, self.stamptext + '.jpeg'),
-                    image, [cv2.IMWRITE_JPEG_QUALITY, 90])
+                    image, [cv2.IMWRITE_JPEG_QUALITY, 70])
 
     def Update(self):
         image = self.CaptureImage()
