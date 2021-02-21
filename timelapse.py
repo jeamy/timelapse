@@ -49,10 +49,17 @@ class Camera:
         # return Image.fromarray(imageRGB)
         return ret, frame
 
-    # def TimestampImage(self, image):
-        # draw_buffer = ImageDraw.Draw(image)
-        # font = ImageFont.truetype(FONT_FILENAME, 32)
-        # draw_buffer.text((5, 5), self.stamptext, font=font)
+    def TimestampImage(self, image):
+        #draw_buffer = ImageDraw.Draw(image)
+        #font = ImageFont.truetype(FONT_FILENAME, 32)
+        #draw_buffer.text((10, 10), self.stamptext, font=font)
+        cv2.putText(image,
+                    self.stamptext,
+                    (30, 30),
+                    cv2.FONT_HERSHEY_SIMPLEX,
+                    1,
+                    (255, 255, 255),
+                    2)
 
     def SaveImage(self, image):
         # with open(os.path.join(self.outputpath, self.stamptext), "a+b") as video_file:
