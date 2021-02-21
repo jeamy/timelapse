@@ -23,21 +23,27 @@ FONT_FILENAME = "/usr/share/fonts/truetype/ubuntu/UbuntuMono-B.ttf"
 # Format of timestamp on each frame
 TIMESTAMP_FORMAT = "%Y-%m-%d %H:%M:%S"
 
+# Command to batch convert mjpeg to mp4 files:
+#  for f in *.mjpeg; do echo $f ; avconv -r 30000/1001 -i "$f" "${f%mjpeg}mp4" 2>/dev/null ; done
+
+
 class Camera:
     def __init__(self, name, url, filename):
         self.name = name
         self.url = url
         self.filename = filename
-        self.video = cv2.VideoCapture(url)
+        self.video = ''
         self.stamptext = name
         self.outputpath = os.path.join(ROOT_PATH, name)
         pathlib.Path(self.outputpath).mkdir(parents=True, exist_ok=True)
 
-    def __del__(self):
-        self.video.release()
+    # def __del__(self):
+    #    self.video.release()
 
     def CaptureImage(self):
+        self.video = cv2.VideoCapture(self.url)
         ret, frame = self.video.read()
+        self.video.release()
         print("Got image from {0} camera".format(self.name))
         # imageRGB = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
         # return Image.fromarray(imageRGB)
@@ -70,6 +76,7 @@ class Camera:
         else:
             print("Captured for image {0} failed!".format(
                 self.stamptext + ".jpeg"))
+
             
             
 
