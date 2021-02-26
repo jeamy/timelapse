@@ -10,7 +10,6 @@ import pathlib
 
 ROOT_PATH = "/media/image/webcams"
 VIDEO_PATH = "/media/image/webcams/video"
-CAMERA = "D52"
 
 
 class VideoMaker:
@@ -25,7 +24,7 @@ class VideoMaker:
     def Update(self):
 
         self.input_path = os.path.join(
-            ROOT_PATH, CAMERA, "2021-02-25", "*.jpeg")
+            ROOT_PATH, self.camera_name, "2021-02-25", "*.jpeg")
         self.ouput_path = os.path.join(
             VIDEO_PATH, self.video_name + "-2021-02-25.avi")
         pathlib.Path(VIDEO_PATH).mkdir(parents=True, exist_ok=True)
