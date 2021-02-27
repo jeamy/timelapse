@@ -32,7 +32,9 @@ class VideoMaker:
         print("Writing video from {0} \nto {1} ...".format(
             self.input_path, self.ouput_path))
 
-        for filename in sorted(glob.glob(self.input_path), key=os.path.getmtime):
+        # for filename in sorted(glob.glob(self.input_path), key=os.path.getmtime): sort by time
+        # sort by name
+        for filename in sorted(glob.glob(self.input_path)):
             img = cv2.imread(filename)
             height, width, layers = img.shape
             self.frameSize = (width, height)
